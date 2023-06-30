@@ -1,0 +1,161 @@
+﻿<Page
+    x:Class="DBLauncher.Pages.LibraryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DBLauncher.Pages"
+    xmlns:controls="using:DBLauncher.Controls"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:Height="2500">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <media:AcrylicBrush x:Key="CustomAcrylicInAppLuminosity" TintOpacity="0.1" TintLuminosityOpacity="0.2" TintColor="#1f1f1f"/>
+                    <media:AcrylicBrush x:Key="CellCustomAcrylicInAppLuminosity" TintOpacity="0.1" TintLuminosityOpacity="0.7" TintColor="#1f1f1f"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid x:Name="RootGrid">
+        <ParallaxView Source="{x:Bind MainView}" VerticalShift="200">
+            <Image Source="/Assets/Img/SiteBackground.png" Stretch="UniformToFill" Width="1920" Height="1080" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.6"/>
+        </ParallaxView>
+
+        <ScrollViewer x:Name="MainView" ViewChanging="MainView_ViewChanging">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image Source="/Assets/Img/RedTownWarfareIcon.png" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15" Opacity="0.7"/>
+                <TextBlock x:Name="GameNameText" FontFamily="Segoe UI" Text="RedTownWarfare" VerticalAlignment="Bottom" Margin="20, 0, 0, 20" FontSize="36" FontWeight="SemiBold"/>
+                
+                <Grid Grid.Row="1" CornerRadius="20 0 0 0" Background="{StaticResource SystemControlAcrylicElementBrush}">
+                    <StackPanel>
+                        <Grid x:Name="MainInfoGridParent" Height="80">
+                            <Grid CornerRadius="20 0 0 20" Height="80" VerticalAlignment="Top" x:Name="MainInfoGrid" Canvas.ZIndex="2" Background="{StaticResource CustomAcrylicInAppLuminosity}">
+
+                                <StackPanel Spacing="30" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+                                    <Button CornerRadius="10" FontWeight="Bold" FontSize="36" Content="PLAY" Style="{StaticResource AccentButtonStyle}"/>
+
+                                    <controls:InfoItem Header="Последний запуск:" Info="30/06/23" InfoIcon="&#xE787;"/>
+                                    <controls:InfoItem Header="Наиграно часов:" Info="150h" InfoIcon="&#xE916;"/>
+                                    <Border Width="1" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
+                                    <controls:InfoItem Header="Достижения:" Info="12 / 25" InfoIcon="&#xEB95;"/>
+                                    <controls:InfoItem Header="Статус:" Info="Установлено" InfoIcon="&#xF13E;"/>
+
+                                </StackPanel>
+
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" Margin="0 0 20 0">
+                                    <ToggleButton>
+                                        <FontIcon Glyph="&#xE734;"/>
+                                    </ToggleButton>
+
+                                    <Button>
+                                        <FontIcon Glyph="&#xE70F;"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Margin="10, 50, 10, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
+                                <StackPanel>
+                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Screenshots" FontSize="18" FontWeight="SemiBold"/>
+                                    <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
+                                    <FlipView x:Name="Gallery" Width="900" Height="500" CornerRadius="5">
+                                        <Image Source="/Assets/Img/RTW/AsValWeapon.png" />
+                                        <Image Source="/Assets/Img/RTW/GunImg.png" />
+                                        <Image Source="/Assets/Img/RTW/LeftSoldier.png" />
+                                        <Image Source="/Assets/Img/RTW/Screenshot297211.png" />
+                                        <Image Source="/Assets/Img/RTW/Screenshot936497.png" />
+                                        <Image Source="/Assets/Img/RTW/SiteBackground.png" />
+                                        <Image Source="/Assets/Img/RTW/SoldiersBackground.png" />
+
+                                    </FlipView>
+
+                                    <muxc:PipsPager x:Name="FlipViewPipsPager" HorizontalAlignment="Center" Margin="0, 12, 0, 0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Margin="10 0 0 0" Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
+                                <StackPanel>
+                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Description" FontSize="18" FontWeight="SemiBold"/>
+                                    <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
+                                    <TextBlock x:Name="GameDescription" Text="Разрушаемое окружение и леволюция.
+Исчерпывающая оптимизация для высокой частоты кадров в секунду.
+Надежные меры по борьбе с мошенничеством и активное модерирование.
+Голосовой чат на основе близости для общения с друзьями и врагами в реальном времени.
+Улучшенный неткод для игры FPS, поддерживающий 254 игрока на сервере, с высокой производительностью тикрейта." Margin="5" TextWrapping="WrapWholeWords"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Margin="10" Background="{StaticResource CellCustomAcrylicInAppLuminosity}" CornerRadius="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:InfoHour Margin="15" Grid.Column="0" Hours="12" Category="Сюжет"/>
+                            <Border Width="1" Grid.Column="0" Margin="0 10 0 10" HorizontalAlignment="Right" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
+
+                            <controls:InfoHour Margin="15" Grid.Column="1" Hours="24" Category="+Дополнения"/>
+
+                            <controls:InfoHour Margin="15" Grid.Column="2" Hours="36" Category="Перфекционист"/>
+                            <Border Width="1" Grid.Column="2" Margin="0 10 0 10" HorizontalAlignment="Left" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
+
+                        </Grid>
+                        <Grid Margin="10" Background="{StaticResource CellCustomAcrylicInAppLuminosity}" CornerRadius="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel x:Name="RecommendedSettings">
+                                <TextBlock Text="Recommended system requirements:" FontFamily="Segoe Ui" FontSize="20" FontWeight="SemiBold" Margin="10"/>
+
+                                <StackPanel x:Name="RecommendedRequirements" Margin="10" Spacing="5">
+                                    <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>
+                                    <controls:InfoTag TagName="Процессор" Key="AMD Ryzen 5 3600 / Intel i5 10400f"/>
+                                    <controls:InfoTag TagName="Видеокарта" Key="Radeon RX 5700XT / GTX 1080TI"/>
+                                    <controls:InfoTag TagName="Память" Key="DDR4 16Gb"/>
+                                    <controls:InfoTag TagName="Место" Key="25Gb"/>
+                                    <controls:InfoTag TagName="Дополнительно" Key="SSD накопитель"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <Border Width="1" Grid.Column="0" Margin="0 50 0 10" HorizontalAlignment="Right" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
+                            
+                            <StackPanel x:Name="MinimalSettings" Grid.Column="1">
+                                <TextBlock Text="Minimal system requirements:" FontFamily="Segoe Ui" Margin="10" FontSize="20" FontWeight="SemiBold"/>
+
+                                <StackPanel x:Name="MinimalRequirements" Margin="10" Spacing="5">
+                                    <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>
+                                    <controls:InfoTag TagName="Процессор" Key="AMD Ryzen 5 1600 / Intel i3 9100f"/>
+                                    <controls:InfoTag TagName="Видеокарта" Key="RX 580 8Gb / GTX 1060 6Gb"/>
+                                    <controls:InfoTag TagName="Память" Key="DDR4 16Gb"/>
+                                    <controls:InfoTag TagName="Место" Key="25Gb"/>
+                                    <controls:InfoTag TagName="Дополнительно" Key="HDD 7200 об/мин"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

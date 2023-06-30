@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="DBLauncher.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DBLauncher"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+
+
+    <Page.Resources>
+        <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
+        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"></SolidColorBrush>
+    </Page.Resources>
+
+    <Grid>
+
+        <muxc:NavigationView x:Name="NavigationViewControl"
+                             Header="PageName"
+                             FontFamily="Montserrat Alternates"
+                             Loaded="NavigationViewControl_Loaded"
+                             SelectionChanged="NavigationViewControl_SelectionChanged">
+
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItemHeader Content="Base"/>
+                <muxc:NavigationViewItem Icon="Home" Content="Home" Tag="HomePage"/>
+                <muxc:NavigationViewItemHeader Content="Games"/>
+                <muxc:NavigationViewItem Icon="Add" Content="Add Game" Tag="AddGamePage"/>
+                <muxc:NavigationViewItem Icon="Library" Content="Library" Tag="LibraryPage"/>
+            </muxc:NavigationView.MenuItems>
+            <muxc:NavigationView.FooterMenuItems>
+                <muxc:NavigationViewItem Icon="Contact" Content="Account" Tag="PageDataTransfertTest"/>
+            </muxc:NavigationView.FooterMenuItems>
+
+            <Frame  CornerRadius="20, 0, 0, 0" 
+                    x:Name="contentFrame"
+                    Background="{StaticResource SystemControlAcrylicElementBrush}"/>
+        </muxc:NavigationView>
+    </Grid>
+</Page>
