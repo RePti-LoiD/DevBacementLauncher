@@ -14,8 +14,8 @@ namespace DBLauncher
 
         private void NavigationViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            contentFrame.Navigate(typeof(LibraryPage));
-            NavigationViewControl.Header = nameof(LibraryPage);
+            contentFrame.Navigate(typeof(GamePage));
+            NavigationViewControl.Header = nameof(GamePage);
         }
 
         private void NavigationViewControl_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs args)
