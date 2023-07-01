@@ -73,7 +73,7 @@
 
                             <Grid Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
                                 <StackPanel>
-                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Screenshots" FontSize="18" FontWeight="SemiBold"/>
+                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Галерея" FontSize="18" FontWeight="SemiBold"/>
                                     <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
                                     <FlipView x:Name="Gallery" Width="900" Height="500" CornerRadius="5">
                                         <Image Source="/Assets/Img/RTW/AsValWeapon.png" />
@@ -92,7 +92,7 @@
 
                             <Grid Grid.Column="1" Margin="10 0 0 0" Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
                                 <StackPanel>
-                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Description" FontSize="18" FontWeight="SemiBold"/>
+                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Описание" FontSize="18" FontWeight="SemiBold"/>
                                     <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
                                     <TextBlock x:Name="GameDescription" Text="Разрушаемое окружение и леволюция.
 Исчерпывающая оптимизация для высокой частоты кадров в секунду.
@@ -126,7 +126,7 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel x:Name="RecommendedSettings">
-                                <TextBlock Text="Recommended system requirements:" FontFamily="Segoe Ui" FontSize="20" FontWeight="SemiBold" Margin="10"/>
+                                <TextBlock Text="Рекомедованные системные требования:" FontFamily="Segoe Ui" FontSize="20" FontWeight="SemiBold" Margin="10"/>
 
                                 <StackPanel x:Name="RecommendedRequirements" Margin="10" Spacing="5">
                                     <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>
@@ -141,7 +141,7 @@
                             <Border Width="1" Grid.Column="0" Margin="0 50 0 10" HorizontalAlignment="Right" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
                             
                             <StackPanel x:Name="MinimalSettings" Grid.Column="1">
-                                <TextBlock Text="Minimal system requirements:" FontFamily="Segoe Ui" Margin="10" FontSize="20" FontWeight="SemiBold"/>
+                                <TextBlock Text="Минимальные системные требования:" FontFamily="Segoe Ui" Margin="10" FontSize="20" FontWeight="SemiBold"/>
 
                                 <StackPanel x:Name="MinimalRequirements" Margin="10" Spacing="5">
                                     <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>
