@@ -9,19 +9,11 @@
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
 
-
-    <Page.Resources>
-        <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
-        <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
-        <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"></SolidColorBrush>
-    </Page.Resources>
-
     <Grid>
 
         <muxc:NavigationView x:Name="NavigationViewControl"
-                             Header="PageName"
-                             FontFamily="Montserrat Alternates"
                              Loaded="NavigationViewControl_Loaded"
+                             AlwaysShowHeader="False"
                              SelectionChanged="NavigationViewControl_SelectionChanged">
 
             <muxc:NavigationView.MenuItems>
@@ -32,12 +24,11 @@
                 <muxc:NavigationViewItem Icon="Library" Content="Library" Tag="LibraryPage"/>
             </muxc:NavigationView.MenuItems>
             <muxc:NavigationView.FooterMenuItems>
-                <muxc:NavigationViewItem Icon="Contact" Content="Account" Tag="PageDataTransfertTest"/>
+                <muxc:NavigationViewItem Icon="Contact" Content="Account" Tag="AccountPage"/>
             </muxc:NavigationView.FooterMenuItems>
 
-            <Frame  CornerRadius="20, 0, 0, 0" 
-                    x:Name="contentFrame"
-                    Background="{StaticResource SystemControlAcrylicElementBrush}"/>
+            <Frame CornerRadius="10, 0, 0, 0" 
+                    x:Name="contentFrame"/>
         </muxc:NavigationView>
     </Grid>
 </Page>

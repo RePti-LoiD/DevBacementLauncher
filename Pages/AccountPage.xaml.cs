@@ -2,9 +2,9 @@
 
 namespace DBLauncher.Pages
 {
-    public sealed partial class HomePage : Page
+    public sealed partial class AccountPage : Page
     {
-        public HomePage()
+        public AccountPage()
         {
             InitializeComponent();
         }

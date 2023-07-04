@@ -3,12 +3,42 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DBLauncher.Pages"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:DBLauncher.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-    <Grid>
+    <ScrollViewer>
+        
+        <StackPanel>
+            <TextBlock Text="Recent" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="15"/>
+            <NavigationViewItemSeparator/>
+            
+            <GridView Margin="20" SelectionMode="None">
+                <controls:GameCard/>
+                <controls:GameCard/>
+                <controls:GameCard/>
+            </GridView>
+            
+            <TextBlock Text="All games" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="15"/>
+            <NavigationViewItemSeparator/>
+            
+            <GridView Margin="20" SelectionMode="None">
+                <controls:GameCard/>
+                <controls:GameCard/>
+                <controls:GameCard/>
+                <controls:GameCard/>
+                <controls:GameCard/>
+            </GridView>
 
-    </Grid>
+            <TextBlock Text="Favorite" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="15"/>
+            <NavigationViewItemSeparator/>
+
+            <GridView Margin="20" SelectionMode="None">
+                <controls:GameCard/>
+            </GridView>
+        </StackPanel>
+    </ScrollViewer>
+
 </Page>

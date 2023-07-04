@@ -1,0 +1,119 @@
+﻿<Page
+    x:Class="DBLauncher.Pages.AccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DBLauncher.Pages"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
+    xmlns:controls="using:DBLauncher.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <media:AcrylicBrush x:Key="CustomAcrylicInAppLuminosity" TintOpacity="0.1" TintLuminosityOpacity="0.2" TintColor="#1f1f1f"/>
+                    <media:AcrylicBrush x:Key="CellCustomAcrylicInAppLuminosity" TintOpacity="0.1" TintLuminosityOpacity="0.7"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ParallaxView Source="{x:Bind MainView}" VerticalShift="200">
+            <Image Source="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1195690/bf89f1cbb680f7d972eb856d51e33f988abad8b9.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.6"/>
+        </ParallaxView>
+
+        <ScrollViewer x:Name="MainView">
+            <Grid>
+                <Border Height="220" Width="220" VerticalAlignment="Top" Background="{StaticResource SystemControlAcrylicElementBrush}" HorizontalAlignment="Left" CornerRadius="160" Margin="150,190,0,0" Canvas.ZIndex="2">
+                    <Border Height="210" Width="210" CornerRadius="210">
+                        <Image Source="https://avatars.steamstatic.com/e64f976f6330c68cf48cb337da0f43294c196fb9_full.jpg" Height="210" Width="210"/>
+                    </Border>
+                </Border>
+
+                <Grid Height="1200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" VerticalAlignment="Stretch" CornerRadius="10 0 0 0">
+                        <Grid Height="150" VerticalAlignment="Top" Background="{StaticResource CustomAcrylicInAppLuminosity}">
+                            <TextBlock x:Name="NickNameBig" Text="{x:Bind NickName.Text}" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
+                            
+                            <TextBlock x:Name="CommunityVisible" HorizontalAlignment="Right" Text="Public" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
+
+                            <StackPanel Margin="390 0 0 0" Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0 20 0 0">
+                                        <TextBlock x:Name="NickName" Text="RePti-LoiD" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+
+                                        <Border Background="{StaticResource SystemAccentColor}" Height="40" Width="50" Padding="5" CornerRadius="15" VerticalAlignment="Center">
+                                            <TextBlock Text="31" Foreground="{StaticResource TextOnAccentFillColorSecondaryBrush}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                    
+                                    <TextBlock x:Name="RealName" Text="Сергей Романович" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+                                    <TextBlock x:Name="Status" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Online" Margin="0 15"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Background="{StaticResource CustomAcrylicInAppLuminosity}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Height="auto" CornerRadius="15" Margin="150 200 0 0">
+                            <StackPanel Spacing="10">
+                                <TextBlock Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind Status.Text}" Margin="15"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="In steam since" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="Mar 12 2019" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Country" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="Российская Федерация(RU)" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                </StackPanel>
+                                <NavigationViewItemSeparator Margin="-10 0 -10 0"/>
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="VAC banned:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="False" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Trade banned:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="False" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                    <TextBlock Text="Day since last ban:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="0" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel x:Name="InGame" Margin="0 -10 0 0">
+                                    <NavigationViewItemSeparator Margin="-10 0 -10 0"/>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                        <TextBlock Text="In game:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                        <TextBlock Text="WallpaperEngine" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel>
+                            
+                        </StackPanel>
+                        
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

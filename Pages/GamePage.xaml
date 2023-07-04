@@ -34,23 +34,24 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Image Source="/Assets/Img/RedTownWarfareIcon.png" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15" Opacity="0.7"/>
-                <TextBlock x:Name="GameNameText" FontFamily="Segoe UI" Text="RedTownWarfare" VerticalAlignment="Bottom" Margin="20, 0, 0, 20" FontSize="36" FontWeight="SemiBold"/>
-                
-                <Grid Grid.Row="1" CornerRadius="20 0 0 0" Background="{StaticResource SystemControlAcrylicElementBrush}">
+                <Image Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15" Opacity="0.7"/>
+                <TextBlock x:Name="GameNameText" Text="RedTownWarfare" VerticalAlignment="Bottom" Margin="20, 0, 0, 20" Style="{StaticResource DisplayTextBlockStyle}"/>
+
+                <Grid Grid.Row="1" CornerRadius="10 0 0 0" Background="{StaticResource SystemControlAcrylicElementBrush}">
                     <StackPanel>
                         <Grid x:Name="MainInfoGridParent" Height="80">
-                            <Grid CornerRadius="20 0 0 20" Height="80" VerticalAlignment="Top" x:Name="MainInfoGrid" Canvas.ZIndex="2" Background="{StaticResource CustomAcrylicInAppLuminosity}">
+                            <Grid CornerRadius="10 0 0 10" Height="80" VerticalAlignment="Top" x:Name="MainInfoGrid" Canvas.ZIndex="2" Background="{StaticResource CustomAcrylicInAppLuminosity}">
 
                                 <StackPanel Spacing="30" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
-                                    <Button CornerRadius="10" FontWeight="Bold" FontSize="36" Content="PLAY" Style="{StaticResource AccentButtonStyle}"/>
+                                    <Button CornerRadius="5" FontWeight="Bold" FontSize="36" Content="PLAY" Style="{StaticResource AccentButtonStyle}"/>
 
                                     <controls:InfoItem Header="Последний запуск:" Info="30/06/23" InfoIcon="&#xE787;"/>
                                     <controls:InfoItem Header="Наиграно часов:" Info="150h" InfoIcon="&#xE916;"/>
                                     <Border Width="1" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
                                     <controls:InfoItem Header="Достижения:" Info="12 / 25" InfoIcon="&#xEB95;"/>
                                     <controls:InfoItem Header="Статус:" Info="Установлено" InfoIcon="&#xF13E;"/>
-
+                                    <Border Width="1" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
+                                    <controls:InfoItem Header="Игроков онлайн:" Info="13548" InfoIcon="&#xF081;"/>
                                 </StackPanel>
 
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10" Margin="0 0 20 0">
@@ -71,11 +72,12 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
+                            <Grid Padding="10" CornerRadius="15" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}">
                                 <StackPanel>
-                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Галерея" FontSize="18" FontWeight="SemiBold"/>
+                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Галерея" Style="{StaticResource SubtitleTextBlockStyle}"/>
                                     <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
                                     <FlipView x:Name="Gallery" Width="900" Height="500" CornerRadius="5">
+                                        
                                         <Image Source="/Assets/Img/RTW/AsValWeapon.png" />
                                         <Image Source="/Assets/Img/RTW/GunImg.png" />
                                         <Image Source="/Assets/Img/RTW/LeftSoldier.png" />
@@ -90,9 +92,9 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Grid Grid.Column="1" Margin="10 0 0 0" Padding="10" CornerRadius="15" Background="{StaticResource CellCustomAcrylicInAppLuminosity}">
+                            <Grid Grid.Column="1" Margin="10 0 0 0" Padding="10" CornerRadius="15" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}">
                                 <StackPanel>
-                                    <TextBlock Margin="10, 10, 10, 5" FontFamily="Sehoe UI" Text="Описание" FontSize="18" FontWeight="SemiBold"/>
+                                    <TextBlock Margin="10, 10, 10, 5" Text="Описание" Style="{StaticResource SubtitleTextBlockStyle}"/>
                                     <NavigationViewItemSeparator Margin="-10, 0, -10, 5"/>
                                     <TextBlock x:Name="GameDescription" Text="Разрушаемое окружение и леволюция.
 Исчерпывающая оптимизация для высокой частоты кадров в секунду.
@@ -103,7 +105,7 @@
                             </Grid>
                         </Grid>
 
-                        <Grid Margin="10" Background="{StaticResource CellCustomAcrylicInAppLuminosity}" CornerRadius="15">
+                        <Grid Margin="10" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" CornerRadius="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -119,14 +121,14 @@
                             <Border Width="1" Grid.Column="2" Margin="0 10 0 10" HorizontalAlignment="Left" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
 
                         </Grid>
-                        <Grid Margin="10" Background="{StaticResource CellCustomAcrylicInAppLuminosity}" CornerRadius="15">
+                        <Grid Margin="10" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" CornerRadius="15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
                             <StackPanel x:Name="RecommendedSettings">
-                                <TextBlock Text="Рекомедованные системные требования:" FontFamily="Segoe Ui" FontSize="20" FontWeight="SemiBold" Margin="10"/>
+                                <TextBlock Text="Рекомедованные системные требования:" Margin="10" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
                                 <StackPanel x:Name="RecommendedRequirements" Margin="10" Spacing="5">
                                     <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>
@@ -141,7 +143,7 @@
                             <Border Width="1" Grid.Column="0" Margin="0 50 0 10" HorizontalAlignment="Right" Background="{StaticResource AppBarSeparatorForegroundThemeBrush}"/>
                             
                             <StackPanel x:Name="MinimalSettings" Grid.Column="1">
-                                <TextBlock Text="Минимальные системные требования:" FontFamily="Segoe Ui" Margin="10" FontSize="20" FontWeight="SemiBold"/>
+                                <TextBlock Text="Минимальные системные требования:" Margin="10" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
                                 <StackPanel x:Name="MinimalRequirements" Margin="10" Spacing="5">
                                     <controls:InfoTag TagName="ОС" Key="Microsoft Windows 10/11"/>

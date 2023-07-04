@@ -26,7 +26,7 @@ namespace DBLauncher
             }
             else
             {
-                TryActivatePageByName(((Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem).Tag.ToString());
+                TryActivatePageByName(nameof(Pages) + "." + ((Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem).Tag.ToString());
                 SetNewHeader((Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem);
             }
         }

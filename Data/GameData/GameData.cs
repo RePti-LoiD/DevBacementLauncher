@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DBLauncher.Controls;
 
 namespace DBLauncher.Data.GameData
 {
@@ -11,6 +12,9 @@ namespace DBLauncher.Data.GameData
         private (int, int) achievements;
 
         private List<string> imagePaths;
-        private List<InfoHourData> infoHoursData;
+        private List<InfoHour> infoHour;
+
+        private List<InfoTag> minSysReq;
+        private List<InfoTag> recSysReq;
     }
 }

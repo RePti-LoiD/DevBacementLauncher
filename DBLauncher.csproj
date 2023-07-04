@@ -119,6 +119,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BasicInfo.xaml.cs">
+      <DependentUpon>BasicInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GameCard.xaml.cs">
+      <DependentUpon>GameCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InfoHour.xaml.cs">
       <DependentUpon>InfoHour.xaml</DependentUpon>
     </Compile>
@@ -129,10 +135,12 @@
       <DependentUpon>InfoTag.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\GameData\GameData.cs" />
-    <Compile Include="Data\GameData\InfoHourData.cs" />
     <Compile Include="Data\Other\ExceptionDialog.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddGamePage.xaml.cs">
       <DependentUpon>AddGamePage.xaml</DependentUpon>
@@ -170,6 +178,7 @@
     <Content Include="Assets\Img\RTW\SiteBackground.png" />
     <Content Include="Assets\Img\RTW\SoldiersBackground.png" />
     <Content Include="Assets\Img\SiteBackground.png" />
+    <Content Include="Assets\Img\Temp\RePtiLoiDAvatar.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -184,6 +193,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\BasicInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GameCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\InfoHour.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +216,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddGamePage.xaml">
       <SubType>Designer</SubType>
@@ -224,6 +245,12 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.8.4</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\circle.webp" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

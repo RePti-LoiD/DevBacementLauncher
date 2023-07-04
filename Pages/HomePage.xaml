@@ -7,7 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <RichEditBox/>
-    </Grid>
+    <ScrollViewer>
+        <StackPanel>
+            <Image x:Name="UserAvatar" Height="300" Width="300" Margin="20" HorizontalAlignment="Left" Source="e:\dotnetprojects\dblauncher\assets\circle.webp"/>
+
+            <TextBlock x:Name="UserName" Text="User Name" Margin="20" Style="{StaticResource DisplayTextBlockStyle}"/>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
