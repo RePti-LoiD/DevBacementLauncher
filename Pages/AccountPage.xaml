@@ -5,6 +5,7 @@
     xmlns:local="using:DBLauncher.Pages"
     xmlns:media="using:Microsoft.UI.Xaml.Media"
     xmlns:controls="using:DBLauncher.Controls"
+    xmlns:system="using:System"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -23,14 +24,14 @@
 
     <Grid>
         <ParallaxView Source="{x:Bind MainView}" VerticalShift="200">
-            <Image Source="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1195690/bf89f1cbb680f7d972eb856d51e33f988abad8b9.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.6"/>
+            <Image x:Name="BackgroundImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.6"/>
         </ParallaxView>
 
         <ScrollViewer x:Name="MainView">
             <Grid>
                 <Border Height="220" Width="220" VerticalAlignment="Top" Background="{StaticResource SystemControlAcrylicElementBrush}" HorizontalAlignment="Left" CornerRadius="160" Margin="150,190,0,0" Canvas.ZIndex="2">
                     <Border Height="210" Width="210" CornerRadius="210">
-                        <Image Source="https://avatars.steamstatic.com/e64f976f6330c68cf48cb337da0f43294c196fb9_full.jpg" Height="210" Width="210"/>
+                        <Image x:Name="AvatarImage" Height="210" Width="210"/>
                     </Border>
                 </Border>
 
@@ -42,22 +43,26 @@
 
                     <Grid Grid.Row="1" Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" VerticalAlignment="Stretch" CornerRadius="10 0 0 0">
                         <Grid Height="150" VerticalAlignment="Top" Background="{StaticResource CustomAcrylicInAppLuminosity}">
-                            <TextBlock x:Name="NickNameBig" Text="{x:Bind NickName.Text}" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
+                            <TextBlock x:Name="NickNameBig" Text="{x:Bind NickName.Text, Mode=OneWay}" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
                             
-                            <TextBlock x:Name="CommunityVisible" HorizontalAlignment="Right" Text="Public" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
+                            <TextBlock x:Name="CommunityVisible" HorizontalAlignment="Right" Text="{x:Bind userData.communityvisibilitystate}" Opacity="0.03" Margin="150 50 0 0" FontSize="100" Style="{StaticResource DisplayTextBlockStyle}"/>
 
                             <StackPanel Margin="390 0 0 0" Orientation="Horizontal">
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="0 20 0 0">
-                                        <TextBlock x:Name="NickName" Text="RePti-LoiD" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+                                        <TextBlock x:Name="NickName" Text="{x:Bind userData.personaname}" Style="{StaticResource TitleLargeTextBlockStyle}"/>
 
                                         <Border Background="{StaticResource SystemAccentColor}" Height="40" Width="50" Padding="5" CornerRadius="15" VerticalAlignment="Center">
-                                            <TextBlock Text="31" Foreground="{StaticResource TextOnAccentFillColorSecondaryBrush}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind userData.playerLevel}" Foreground="{StaticResource TextOnAccentFillColorSecondaryBrush}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                         </Border>
                                     </StackPanel>
+
+                                    <TextBlock x:Name="RealName" Text="{x:Bind userData.realname}" Style="{StaticResource BodyStrongTextBlockStyle}"/>
                                     
-                                    <TextBlock x:Name="RealName" Text="Сергей Романович" Style="{StaticResource BodyStrongTextBlockStyle}"/>
-                                    <TextBlock x:Name="Status" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="Online" Margin="0 15"/>
+                                    <StackPanel  Margin="0 15" Orientation="Horizontal" Spacing="5">
+                                        <TextBlock x:Name="Status" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind userData.personastate}"/>
+                                        <TextBlock x:Name="LastLogOff" Text="{x:Bind userData.GetLastLogoffTime(), Mode=OneWay}" Foreground="{x:Bind Status.Foreground}"/>
+                                    </StackPanel>
 
                                 </StackPanel>
                             </StackPanel>
@@ -65,41 +70,41 @@
 
                         <Grid Background="{StaticResource CustomAcrylicInAppLuminosity}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Height="auto" CornerRadius="15" Margin="150 200 0 0">
                             <StackPanel Spacing="10">
-                                <TextBlock Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind Status.Text}" Margin="15"/>
+                                <TextBlock Foreground="{x:Bind Status.Foreground}" Style="{StaticResource BodyStrongTextBlockStyle}" Text="{x:Bind Status.Text, Mode=OneWay}" Margin="15"/>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="In steam since" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                    <TextBlock Text="Mar 12 2019" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="{x:Bind userData.GetCreateTime(), Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="Country" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                    <TextBlock Text="Российская Федерация(RU)" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="{x:Bind userData.loccountrycode}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                 </StackPanel>
                                 <NavigationViewItemSeparator Margin="-10 0 -10 0"/>
 
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="VAC banned:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                    <TextBlock Text="False" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock x:Name="IsVacBanned" Text="{x:Bind userData.playerBans.VACBanned}" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Trade banned:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                    <TextBlock Text="False" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="{x:Bind userData.playerBans.EconomyBan}" Foreground="{x:Bind IsVacBanned.Foreground, Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="Day since last ban:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                    <TextBlock Text="0" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                    <TextBlock Text="{x:Bind userData.playerBans.DaysSinceLastBan}" Foreground="{x:Bind IsVacBanned.Foreground, Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                 </StackPanel>
 
-                                <StackPanel x:Name="InGame" Margin="0 -10 0 0">
+                                <StackPanel x:Name="InGame" Margin="0 -10 0 0" Visibility="Collapsed">
                                     <NavigationViewItemSeparator Margin="-10 0 -10 0"/>
 
                                     <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                         <TextBlock Text="In game:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-                                        <TextBlock Text="WallpaperEngine" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+                                        <TextBlock Text="{x:Bind userData.gameextrainfo}" Foreground="{StaticResource SystemFillColorSuccessBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DBLauncher.Pages;
+using DBLauncher.SaveWorks;
+using DBLauncher.SaveWorks.Data;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -10,6 +13,12 @@ namespace DBLauncher
         public MainPage()
         {
             InitializeComponent();
+
+            Loaded += async (x, y) =>
+            {
+                GlobalContantsSaveHandler.InitGlobalConstants();
+                
+            };
         }
 
         private void NavigationViewControl_Loaded(object sender, RoutedEventArgs e)
@@ -22,7 +31,8 @@ namespace DBLauncher
         {
             if (args.IsSettingsSelected)
             {
-
+                TryActivatePageByName(nameof(Pages) + "." + nameof(SettingsePage));
+                SetNewHeader((Microsoft.UI.Xaml.Controls.NavigationViewItem)args.SelectedItem);
             }
             else
             {

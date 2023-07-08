@@ -10,7 +10,7 @@
     d:DesignWidth="400">
 
     <StackPanel Orientation="Horizontal">
-        <TextBlock Text="VAC banned:" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
-        <TextBlock Text="False" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+        <TextBlock Text="{x:Bind Key}" Style="{StaticResource BodyStrongTextBlockStyle}" Margin="15 0 0 0"/>
+        <TextBlock Text="{x:Bind Value}" Style="{StaticResource BodyStrongTextBlockStyle}" Foreground="GreenYellow" Margin="15 0 0 0"/>
     </StackPanel>
 </UserControl>

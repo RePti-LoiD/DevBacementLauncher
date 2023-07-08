@@ -1,36 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using SteamApiTest.Data;
-using SteamApiTest.SteamApiData;
+using SteamAPI.Data;
+using DBLauncher.SaveWorks.Data;
 
-namespace Prog
+namespace SteamAPI
 {
-
-    public class SteamApiHandler
+    public class SteamApiDataParse
     {
         public static HttpClient httpClient = new HttpClient();
 
-        public static string steamApiKey = "98E74DA08813E17F9F1D89EB9538B7E2";
-        public static string userSteamID = "76561198932933148";
+        public string steamApiKey = GlobalConstants.SteamApiAccessKey;
+        public string userSteamID = GlobalConstants.SteamUserID;
+        
         public static List<CountryData> countryData = new List<CountryData>();
 
-        public static string steamPathsData = File.ReadAllText(Path.Combine("C:", "Program Files (x86)", "Steam", "steamapps", "libraryfolders.vdf"));
-
-        public static void Main(string[] args)
+        public SteamApiDataParse(string steamApiKey, string userSteamID)
         {
-            foreach (var item in GetOwnedGamesData(userSteamID, steamApiKey))
-            {
-                Console.WriteLine($"{item.Name} | is downloaded -> {item.IsDownloaded}");
-            }
-
-            Console.ReadLine();
+            this.steamApiKey = steamApiKey;
+            this.userSteamID = userSteamID;
         }
 
-        public static SteamApiUserData GetUserInfo(string userSteamID, bool parseOwnedGames = false)
+        public SteamApiUserData GetUserInfo(bool parseOwnedGames = false)
         {
             string userData = httpClient.GetStringAsync($"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={steamApiKey}&steamids={userSteamID}").Result;
             string playerLevel = httpClient.GetStringAsync($"https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key={steamApiKey}&steamid={userSteamID}").Result;
@@ -44,7 +37,7 @@ namespace Prog
 
             steamApiUserData.playerLevel = (int)JObject.Parse(playerLevel)["response"]["player_level"];
 
-            steamApiUserData.profileBackground = (string)JObject.Parse(profileBackground)["response"]["profile_background"]["image_large"];
+            steamApiUserData.profileBackground = GetIconLinkById((string)JObject.Parse(profileBackground)["response"]["profile_background"]["image_large"]);
 
             JToken playerBansObj = JObject.Parse(playerBans)["players"][0];
 
@@ -59,9 +52,9 @@ namespace Prog
                 EconomyBan = (string)playerBansObj["EconomyBan"],
             };
 
-
-            for (int i = 0; i < 3; i++)
-                steamApiUserData.lastPlayedGamesId.Add((int)lastPlayedObj["response"]["games"][i]["appid"]);
+            if (lastPlayedObj["response"]["games"] != null)
+                for (int i = 0; i < (int)lastPlayedObj["response"]["total_count"]; i++)
+                    steamApiUserData.lastPlayedGamesId.Add((int)lastPlayedObj["response"]["games"][i]["appid"]);
 
             foreach (CountryData item in countryData)
                 if (item.Alpha2 == steamApiUserData.loccountrycode)
@@ -71,12 +64,12 @@ namespace Prog
                 }
 
             if (parseOwnedGames)
-                steamApiUserData.ownedGames = GetOwnedGamesData(userSteamID, steamApiKey);
+                steamApiUserData.ownedGames = GetOwnedGamesData();
 
             return steamApiUserData;
         }
 
-        public static List<SteamApiGameData> GetOwnedGamesData(string userSteamID, string steamApiKey)
+        public List<SteamApiGameData> GetOwnedGamesData()
         {
             string gameData = httpClient.GetStringAsync($"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={steamApiKey}&steamid={userSteamID}&format=json&include_appinfo=true&skip_unvetted_apps=true").Result;
             JToken gameDataObj = JObject.Parse(gameData)["response"]["games"];
@@ -99,13 +92,13 @@ namespace Prog
             }
 
             foreach (var item in gamesData)
-                if (steamPathsData.Contains($"{'"'}{item.AppId}{'"'}"))
+                if (GlobalConstants.SteamPathsData.Contains($"{'"'}{item.AppId}{'"'}"))
                     item.IsDownloaded = true;
 
             return gamesData;
         }
 
-        public static ExtendedData GetExtendedGameData(int appid, string steamUserId)
+        public ExtendedGameData GetExtendedGameData(int appid)
         {
             string appdetails = httpClient.GetStringAsync($"https://store.steampowered.com/api/appdetails?appids={appid}").Result;
 
@@ -115,7 +108,7 @@ namespace Prog
             JToken extendedDataObjData = extendedDataObj["data"];
 
 
-            ExtendedData extendedData = new ExtendedData()
+            ExtendedGameData extendedData = new ExtendedGameData()
             {
                 required_age = (int)extendedDataObjData["required_age"],
                 controller_support = (string)extendedDataObjData["controller_support"],
@@ -158,14 +151,14 @@ namespace Prog
             catch { }
             try
             {
-                extendedData.SteamApiAchievements = GetAchievents(steamUserId, appid);
+                extendedData.SteamApiAchievements = GetAchievents(appid);
             }
             catch { }
 
             return extendedData;
         }
 
-        public static List<SteamApiAchievement> GetAchievents(string userSteamID, int appid)
+        public List<SteamApiAchievement> GetAchievents(int appid)
         {
             string schemaForGame = httpClient.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={steamApiKey}&appid={appid}").Result;
             JToken schemaForGameRoot = JObject.Parse(schemaForGame)["game"]["availableGameStats"];
@@ -213,7 +206,7 @@ namespace Prog
         }
 
         public static string GetIconLinkById(int appid, string hash) => $"http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg";
-        public static string GetIconLinkById(string hash) => $"http://media.steampowered.com/steamcommunity/public/{hash}";
+        public static string GetIconLinkById(string hash) => $"http://media.steampowered.com/steamcommunity/public/images/{hash}";
         public static DateTime GetTimeByStamp(long stamp) => DateTimeOffset.FromUnixTimeSeconds(stamp).Date;
     }
 }

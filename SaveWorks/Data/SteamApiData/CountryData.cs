@@ -1,4 +1,4 @@
-﻿namespace SteamApiTest.SteamApiData
+﻿namespace SteamAPI.Data
 {
     public class CountryData
     {

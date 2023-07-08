@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SteamApiTest.Data
+namespace SteamAPI.Data
 {
 
     public class SteamApiGameData
@@ -37,10 +37,11 @@ namespace SteamApiTest.Data
         {
             get; set;
         }
-        public ExtendedData ExtendedData { get; set; } = new ExtendedData();
+
+        public ExtendedGameData ExtendedData { get; set; } = new ExtendedGameData();
     }
 
-    public class ExtendedData
+    public class ExtendedGameData
     {
         public int required_age;
         public string controller_support;
