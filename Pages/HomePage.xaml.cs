@@ -1,4 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Gameloop.Vdf;
+using Windows.UI.Xaml.Controls;
 
 namespace DBLauncher.Pages
 {
@@ -7,6 +11,11 @@ namespace DBLauncher.Pages
         public HomePage()
         {
             InitializeComponent();
+
+            Loaded += (x, y) =>
+            {
+                //Launcher.LaunchUriAsync(new Uri("steam://run/238320"));
+            };
         }
     }
 }

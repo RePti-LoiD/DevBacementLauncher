@@ -12,6 +12,7 @@
             <Image x:Name="UserAvatar" Height="300" Width="300" Margin="20" HorizontalAlignment="Left" Source="e:\dotnetprojects\dblauncher\assets\circle.webp"/>
 
             <TextBlock x:Name="UserName" Text="User Name" Margin="20" Style="{StaticResource DisplayTextBlockStyle}"/>
+            <TextBlock x:Name="FileReadData" Text=".vdf text read" Margin="20" FontSize="20"/>
         </StackPanel>
     </ScrollViewer>
 </Page>
